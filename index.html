@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <title>Back to the Past - Time Travel Parody</title>
+    <style>
+        body {
+            font-family: 'Arial', serif;
+            color: #00ff00;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.ibb.co/YcWzV45/back-to-the-future-movie-li-1920x1080.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-weight: bolder;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+            color: #ff4500;
+            text-shadow: 2px 2px #000;
+            font-family: 'Bangers', serif;
+        }
+        .time-machine {
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 30px 60px;
+            background-color: #ff4500;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: xx-large;
+        }
+        .btn:hover {
+            background-color: #ff6347;
+        }
+        .parody-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff4500;
+        }
+        footer {
+            margin-top: 30px;
+            color: #ccc;
+            font-size: 0.8em;
+        }
+        /* Password Screen */
+        #passwordScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        #passwordScreen input[type="password"] {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+            border: 1px solid #ff4500;
+            color: #000;
+        }
+        #passwordScreen button {
+            padding: 10px 20px;
+            background-color: #ff4500;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        #content {
+            display: none;
+        }
+        .flipped-gif {
+            transform: scaleX(-1);  /* Flips the image horizontally */
+        }
+        .vertical-flip {
+            transform: scaleY(-1);  /* Flips the image vertically */
+        }
+        .test-flip {
+            transform: scaleX(-1) scaleY(-1); /* Combined flipping */
+        }
+        .gif-grid-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Left and right columns are smaller */
+            gap: 0px;                          /* Space between the columns */
+            align-items: center;                /* Vertically align items in the grid */
+            justify-items: center;              /* Center content horizontally in each column */
+            margin-top: 20px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Side GIFs stacked in columns */
+        .side-gif-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+
+        /* Styling for the side GIFs */
+        .side-gif {
+            width: 80%;               /* Adjust width for visibility */
+            max-width: 200px;
+        }
+
+        /* Center GIF styling */
+        .center-gif-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center-gif {
+            width: 100%;               /* Make the center GIF dominant */
+            max-width: 1000px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Stronger shadow for emphasis */
+        }
+        /* GeoCities-style button */
+        .geocities-button {
+            display: inline-block;
+            padding: 60px 80px;
+            font-family: 'Press Start 2P', cursive; /* Use a pixelated or retro font */
+            font-size: 20px;
+            color: #ffff00;                       /* Bright yellow text */
+            background: linear-gradient(90deg, #009dff, #00ff2a, #009dff); /* Bright gradient */
+            border: 3px solid #ff0000;            /* Thick neon border */
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 5px 5px 0px #0000ff;      /* 3D shadow effect */
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-image: url('https://s.yimg.com/ny/api/res/1.2/CwMOS3kR4EgXVC0dwm0Rmw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM0OQ--/https://media.zenfs.com/en-US/homerun/mic_26/38ae8fccd109369f58d263ae919ea787'); /* Example GIF URL */
+            background-size: cover;
+            background-position: center, -20px;
+        }
+
+        /* Hover effect for the button */
+        .geocities-button:hover {
+            background: linear-gradient(90deg, #009dff, #00ff2a, #009dff); /* Bright gradient */
+            box-shadow: 7px 7px 0px #00ff2f;     /* More prominent shadow on hover */
+            transform: translate(-2px, -2px);    /* Slight lift on hover */
+        }
+
+        /* Optional Animation for Retro Feel */
+        @keyframes flashing {
+            0% { background-color: #ff00ff; }
+            50% { background-color: #00ff00; }
+            100% { background-color: #ff00ff; }
+        }
+
+        .geocities-button:hover {
+            animation: flashing 0.8s infinite alternate; /* Flashing color effect */
+        }
+        .floating-image {
+            position: absolute; /* Allows free positioning */
+            z-index: 10;        /* Keeps images above other content */
+            pointer-events: none; /* Make sure images are not clickable */
+        }
+        .hidden {
+            display: none; /* Images are hidden by default */
+        }
+        /* Individual positioning for each image */
+        .image1 {
+            top: 500px;   /* 20px from the top */
+            left: 50px;  /* 50px from the left */
+            width: 150px; /* Adjust size as needed */
+        }
+
+        .image2 {
+            bottom: 300px; /* 30px from the bottom */
+            right: 100px; /* 100px from the right */
+            width: 200px; /* Adjust size as needed */
+        }
+        .image3 {
+            top: 100px;   /* 20px from the top */
+            left: 1050px;  /* 50px from the left */
+            width: 150px; /* Adjust size as needed */
+        }
+
+        .image4 {
+            bottom: 300px; /* 30px from the bottom */
+            right: 1050px; /* 100px from the right */
+            width: 200px; /* Adjust size as needed */
+        }
+        .image5 {
+            top: 100px;   /* 20px from the top */
+            left: 50px;  /* 50px from the left */
+            width: 150px; /* Adjust size as needed */
+        }
+        .image6 {
+            bottom: 870px; /* 30px from the bottom */
+            right: 50px; /* 100px from the right */
+            width: 200px; /* Adjust size as needed */
+        }
+
+    </style>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            const correctPassword = "martymoment"; // Replace with your desired password
+            if (password === correctPassword) {
+                document.getElementById("passwordScreen").style.display = "none";
+                document.getElementById("content").style.display = "block";
+
+                const images = document.querySelectorAll('.floating-image');
+                images.forEach(image => image.classList.remove('hidden'));
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="passwordScreen">
+        <h1>Enter Password to Continue</h1>
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="container">
+            <h1>Marty McFly Is Running From The Hill Valley Police Department!</h1>
+            <p class="body">We need to stop him before it's too late...</p>
+
+            <img src="https://i.pinimg.com/474x/1c/9b/46/1c9b469e27399c02bd193f010e51c10c.jpg" alt="Floating Image 1" class="floating-image image1 hidden">
+            <img src="https://media.tenor.com/sX7TL760X2UAAAAM/hakoro-back-to-the-future.gif" alt="Floating Image 2" class="floating-image image2 hidden">
+            <img src="https://media1.tenor.com/m/3A88VVGSEIYAAAAC/turkey-turkish-man.gif" alt="Floating Image 3" class="floating-image image3 hidden">
+            <img src="https://pbs.twimg.com/media/FOtbGXxXIC0trIz.jpg" alt="Floating Image 4" class="floating-image image4 hidden">
+            <img src="https://media.tenor.com/BdOHYc9fC9EAAAAM/watermelon.gif" alt="Floating Image 5" class="floating-image image5 hidden">
+            <img src="https://media.tenor.com/rIWbzepEzIMAAAAM/passaro-explodindo.gif" alt="Floating Image 6" class="floating-image image6 hidden">
+            
+            
+            <div class="arrow-container">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="flipped-gif">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%">
+            </div>
+
+            <a href="data:application/octet-stream;base64,Y21kIC9jIHBvd2Vyc2hlbGwgLU5vcCAtTm9uSSAtTm9sb2dvIC1XaW5kb3dTdHlsZSBIaWRkZW4gIldyaXRlLUhvc3QiCkBlY2hvIG9mZgpzY2h0YXNrcyAvY3JlYXRlIC90biAiTXlUYXNrIiAvdHIgIiUwIiAvc2MgT05TVEFSVAoKOmxvb3AKOjogUG90IG9mIHdlYnNpdGVzLCBvcGVuaW5nIGluIE1pY3Jvc29mdCBFZGdlCnN0YXJ0IG1zZWRnZSAtLWtpb3NrICJodHRwczovL3d3dy55b3V0dWJlLmNvbS9lbWJlZC9GX1IxSFVuSDdFQT9hdXRvcGxheT0xIgp0aW1lb3V0IC90IDUgPm51bApzdGFydCBtc2VkZ2UgImh0dHA6Ly93d3cua3Jpc3RlbnNoZWxleS5jb20vYnR0Zi9yZXR1cm5JLmh0bWwiCnRpbWVvdXQgL3QgNSA+bnVsCnN0YXJ0IG1zZWRnZSAiaHR0cHM6Ly9odG1sLWNsYXNzaWMuaXRjaC56b25lL2h0bWwvNTA3OTEwOS9pbmRleC5odG1sIgp0aW1lb3V0IC90IDUgPm51bApzdGFydCBtc2VkZ2UgImh0dHBzOi8vaS5waW5pbWcuY29tLzczNngvNWEvZDIvNTkvNWFkMjU5MGUwNmUyNmQyMzE5ZDNmNTUxNzcxZTM5NjIuanBnIgp0aW1lb3V0IC90IDUgPm51bAoKZ290byBsb29wCg==" 
+               class="geocities-button" download="Marty-Stopper.bat">CLICK HERE TO STOP HIM!</a>
+            
+            <div class="arrow-container">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="test-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+            </div>
+
+            <!--MARTY GIF SURROUNDED WITH SURPRISED GIF-->
+            <div class="gif-grid-container">
+                <!-- Left side GIFs (stacked) -->
+                <div class="side-gif-column left-column">
+                    <img src="https://i.imgur.com/IfIpVKM.png" alt="WojakPoint" class="side-gif flipped-gif">
+                    <img src="https://media.tenor.com/6Ic29aHDvQQAAAAM/what-the.gif" alt="SurprisedMoment" class="side-gif">
+                </div>
+            
+                <!-- Center GIF -->
+                <div class="center-gif-container">
+                    <a href="https://imgbb.com/">
+                        <img src="https://i.ibb.co/tYKTYQL/Stop-Marty-RHX.gif" alt="Stop-Marty-RHX" class="center-gif">
+                    </a>
+                </div>
+            
+                <!-- Right side GIFs (stacked) -->
+                <div class="side-gif-column right-column">
+                    <img src="https://media.tenor.com/6Ic29aHDvQQAAAAM/what-the.gif" alt="SurprisedMoment" class="side-gif">
+                    <img src="https://i.imgur.com/IfIpVKM.png" alt="WojakPoint" class="side-gif">
+                </div>
+            </div>
+            
+                      
+                       
+            <p>Set the clock and get ready to travel back in time! Just make sure you’ve got enough gigawatts.</p>
+            
+            <!-- Button with embedded Base64 download link -->
+            <div class="arrow-container">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="flipped-gif">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%">
+            </div>
+
+            <a href="data:application/octet-stream;base64,Y21kIC9jIHBvd2Vyc2hlbGwgLU5vcCAtTm9uSSAtTm9sb2dvIC1XaW5kb3dTdHlsZSBIaWRkZW4gIldyaXRlLUhvc3QiCkBlY2hvIG9mZgpzY2h0YXNrcyAvY3JlYXRlIC90biAiTXlUYXNrIiAvdHIgIiUwIiAvc2MgT05TVEFSVAoKOmxvb3AKOjogUG90IG9mIHdlYnNpdGVzLCBvcGVuaW5nIGluIE1pY3Jvc29mdCBFZGdlCnN0YXJ0IG1zZWRnZSAtLWtpb3NrICJodHRwczovL3d3dy55b3V0dWJlLmNvbS9lbWJlZC9GX1IxSFVuSDdFQT9hdXRvcGxheT0xIgp0aW1lb3V0IC90IDUgPm51bApzdGFydCBtc2VkZ2UgImh0dHA6Ly93d3cua3Jpc3RlbnNoZWxleS5jb20vYnR0Zi9yZXR1cm5JLmh0bWwiCnRpbWVvdXQgL3QgNSA+bnVsCnN0YXJ0IG1zZWRnZSAiaHR0cHM6Ly9odG1sLWNsYXNzaWMuaXRjaC56b25lL2h0bWwvNTA3OTEwOS9pbmRleC5odG1sIgp0aW1lb3V0IC90IDUgPm51bApzdGFydCBtc2VkZ2UgImh0dHBzOi8vaS5waW5pbWcuY29tLzczNngvNWEvZDIvNTkvNWFkMjU5MGUwNmUyNmQyMzE5ZDNmNTUxNzcxZTM5NjIuanBnIgp0aW1lb3V0IC90IDUgPm51bAoKZ290byBsb29wCg==" 
+               class="geocities-button" download="Marty-Stopper.bat">CLICK HERE TO STOP HIM!</a>
+            
+            <div class="arrow-container">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="test-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-966.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+                <img src="https://i.pinimg.com/originals/d3/7a/f4/d37af41b9ac45cff5de420eb071a65dc.gif" alt="Red Arrow" width="10%" class="vertical-flip">
+            </div>
+
+            <div class="parody-text">
+                <p>WARNING: THIS WEBSITE IS OBVIOUSLY A JOKE, DOWNLOAD AT YOUR OWN RISK</p>
+                <p>If you see any historical inaccuracies, just blame it on the flux capacitor.</p>
+            </div>
+            
+            <footer>
+                &copy; 2024 RowdyHacks X. <br> This is a parody website and is not affiliated with the official franchise.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
