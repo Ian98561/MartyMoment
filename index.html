@@ -128,12 +128,14 @@
         .center-gif-container {
             display: flex;
             justify-content: center;
+            pointer-events: none;
         }
 
         .center-gif {
             width: 100%;               /* Make the center GIF dominant */
             max-width: 1000px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Stronger shadow for emphasis */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            pointer-events: none; /* Stronger shadow for emphasis */
         }
         /* GeoCities-style button */
         .geocities-button {
